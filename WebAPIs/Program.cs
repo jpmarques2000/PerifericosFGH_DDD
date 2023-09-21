@@ -24,8 +24,9 @@ builder.Services.AddSwaggerGen( c =>
 builder.Services.AddDbContext<ApplicationDbContext>(ServiceLifetime.Scoped);
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 // Interface and Repository
-builder.Services.AddScoped(typeof(IGeneric<>), typeof(GenericsRepository<>));
-builder.Services.AddScoped<IProduct, ProductRepository>();
+//builder.Services.AddScoped(typeof(IGeneric<>), typeof(GenericsRepository<>));
+//builder.Services.AddScoped<IProduct, ProductRepository>();
+//builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
 var app = builder.Build();
 

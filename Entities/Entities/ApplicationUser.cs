@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,13 @@ namespace Entities.Entities
 {
     public class ApplicationUser : IdentityUser
     {
-        //Mais dados a serem adicionados
         [Column("USER_TYPE")]
         public UserType? Type { get; set; }
+
+        public int EnderecoId { get; set; }
+        [Column(TypeName = "varchar(20)")]
+        [Required]
+        public string? CPF { get; set; }
+        public Address? Endereco { get; set; }
     }
 }
