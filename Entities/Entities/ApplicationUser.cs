@@ -15,7 +15,7 @@ namespace Entities.Entities
         [Column("USER_TYPE")]
         public UserType? Type { get; set; }
 
-        public int EnderecoId { get; set; }
+        public int EnderecoCEP { get; set; }
         [Column(TypeName = "varchar(20)")]
         [Required]
         public string? CPF { get; set; }

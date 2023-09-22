@@ -51,7 +51,8 @@ namespace WebAPIs.Controllers
             {
                 UserName = userData.Email,
                 Email = userData.Email,
-                CPF = userData.CPF
+                CPF = userData.CPF,
+                EnderecoCEP = userData.CEP
             }, userData.Password!);
 
             if (!response.Success)

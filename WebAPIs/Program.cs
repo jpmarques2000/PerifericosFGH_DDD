@@ -1,8 +1,10 @@
 using Domain.Interfaces;
 using Domain.Interfaces.Generics;
+using Entities.Entities;
 using Infraestructure.Configuration;
 using Infraestructure.Repository.Generics;
 using Infraestructure.Repository.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
@@ -24,9 +26,11 @@ builder.Services.AddSwaggerGen( c =>
 builder.Services.AddDbContext<ApplicationDbContext>(ServiceLifetime.Scoped);
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 // Interface and Repository
-//builder.Services.AddScoped(typeof(IGeneric<>), typeof(GenericsRepository<>));
+builder.Services.AddScoped(typeof(IGeneric<>), typeof(GenericsRepository<>));
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 //builder.Services.AddScoped<IProduct, ProductRepository>();
-//builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
 var app = builder.Build();
 
