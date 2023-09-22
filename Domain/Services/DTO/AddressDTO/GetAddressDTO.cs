@@ -1,32 +1,19 @@
-﻿using Entities.Validations;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Entities
+namespace Infraestructure.DTO.AddressDTO
 {
-    public class Address : Validation
+    public class GetAddressDTO
     {
-        [Key]
-        [Required]
         public int Cep { get; set; }
-
-        [Column(TypeName = "varchar(50)")]
-        [Required]
         public string? Rua { get; set; }
-
-        [Column(TypeName = "varchar(50)")]
-        [Required]
         public string? Bairro { get; set; }
-
-        [Required]
         public int Numero { get; set; }
-
-        [Column(TypeName = "varchar(80)")]
         public string? Complemento { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Domain.Interfaces;
 using Entities.Entities;
-using Infraestructure.DTO;
+using Infraestructure.DTO.AuthDTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;

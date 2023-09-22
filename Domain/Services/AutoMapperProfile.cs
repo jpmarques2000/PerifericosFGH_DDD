@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using Domain.Services.DTO.AddressDTO;
+using Entities.Entities;
+using Infraestructure.DTO.AddressDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +14,10 @@ namespace Domain.Services
     {
         public AutoMapperProfile()
         {
-            
+            CreateMap<Address, GetAddressDTO>();
+            CreateMap<GetAddressDTO, Address>();
+            CreateMap<AddAddressDTO, Address>();
+            CreateMap<UpdateAddressDTO, Address>();
         }
     }
 }
