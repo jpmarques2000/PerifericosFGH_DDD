@@ -18,6 +18,7 @@ namespace Domain.Services
             CreateMap<GetAddressDTO, Address>();
             CreateMap<AddAddressDTO, Address>();
             CreateMap<UpdateAddressDTO, Address>();
+            CreateMap<Address, UpdateAddressDTO>();
         }
     }
 }

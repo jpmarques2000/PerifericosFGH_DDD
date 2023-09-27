@@ -1,7 +1,9 @@
 ﻿using Domain.Interfaces;
 using Domain.Interfaces.InterfaceServices;
+using Entities.Entities;
 using Infraestructure.DTO.AddressDTO;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections;
 
 namespace WebAPIs.Controllers
 {
@@ -9,47 +11,44 @@ namespace WebAPIs.Controllers
     [Route("/api/Address")]
     public class AddressController : ControllerBase
     {
-        private readonly IAddress _address;
-        private readonly IAddressService _addressService;
+        private readonly IAddressRepository _addressRepository;
 
-        public AddressController(IAddress address, IAddressService addressService)
+        public AddressController(IAddressRepository addressRepository)
         {
-            _address = address;
-            _addressService = addressService;
+            _addressRepository = addressRepository;
         }
 
-        [HttpGet]
-        public async Task<object> GetAllAddress()
-        {
-            return Ok(await _address.GetAll());
-        }
+        //[HttpGet]
+        //public async Task<object> GetAllAddress()
+        //{
+        //    return Ok(await _addressRepository.GetAll());
+        //}
 
-        [HttpGet("get-by-id")]
-        public async Task<object> GetAddressById(int Id)
-        {
-            return Ok(await _address.GetById(Id));
-        }
+        //[HttpGet("get-by-id")]
+        //public async Task<object> GetAddressById(int Id)
+        //{
+        //    return Ok(await _addressRepository.GetById(Id));
+        //}
 
         [HttpPost]
-        public async Task<object> AddNewAddress(AddAddressDTO newAddress)
+        public async Task<ActionResult<ServiceResponse<ICollection>>> AddNewAddress(AddAddressDTO newAddress)
         {
-            await _addressService.AddAddress(newAddress);
-            return newAddress;
+            return Ok(await _addressRepository.AddAddress(newAddress));
         }
 
-        [HttpDelete]
-        public async Task<object> DeleteAddress(int id)
-        {
-            try
-            {
-                var address = await _address.GetById(id);
-                await _address.Delete(address);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-            return true;
-        }
+        //[HttpDelete]
+        //public async Task<object> DeleteAddress(int id)
+        //{
+        //    try
+        //    {
+        //        var address = await _addressRepository.GetById(id);
+        //        await _addressRepository.Delete(address);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return false;
+        //    }
+        //    return true;
+        //}
     }
 }
