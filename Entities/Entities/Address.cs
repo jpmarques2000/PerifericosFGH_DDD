@@ -14,6 +14,8 @@ namespace Entities.Entities
 {
     public class Address 
     {
+        [Key]
+        [Required]
         public int Cep { get; set; }
 
         [Column(TypeName = "varchar(50)")]

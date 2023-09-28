@@ -26,10 +26,11 @@ builder.Services.AddSwaggerGen( c =>
 builder.Services.AddDbContext<ApplicationDbContext>(ServiceLifetime.Scoped);
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 // Interface and Repository
-builder.Services.AddScoped(typeof(IGeneric<>), typeof(GenericsRepository<>));
+//builder.Services.AddScoped(typeof(IGeneric<>), typeof(GenericsRepository<>));
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddMemoryCache();
 

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Services.DTO.AddressDTO;
+using Domain.Services.DTO.ProductDTO;
 using Entities.Entities;
 using Infraestructure.DTO.AddressDTO;
 using System;
@@ -19,6 +20,10 @@ namespace Domain.Services
             CreateMap<AddAddressDTO, Address>();
             CreateMap<UpdateAddressDTO, Address>();
             CreateMap<Address, UpdateAddressDTO>();
+            CreateMap<Product, GetProductDTO>();
+            CreateMap<GetProductDTO, Product>();
+            CreateMap<AddProductDTO, Product>();
+            CreateMap<UpdateProductDTO, Product>();
         }
     }
 }
