@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Entities
 {
-    public class ProductPromotion : Entity
+    public class Promotion : Entity
     {
         [Column(TypeName = "varchar(80)")]
         [Required]

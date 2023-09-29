@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Services.DTO.AddressDTO;
 using Domain.Services.DTO.ProductDTO;
+using Domain.Services.DTO.PromotionDTO;
 using Entities.Entities;
 using Infraestructure.DTO.AddressDTO;
 using System;
@@ -15,15 +16,24 @@ namespace Domain.Services
     {
         public AutoMapperProfile()
         {
+            //Address Automappers
             CreateMap<Address, GetAddressDTO>();
             CreateMap<GetAddressDTO, Address>();
             CreateMap<AddAddressDTO, Address>();
             CreateMap<UpdateAddressDTO, Address>();
             CreateMap<Address, UpdateAddressDTO>();
+            //Product Automappers
             CreateMap<Product, GetProductDTO>();
             CreateMap<GetProductDTO, Product>();
             CreateMap<AddProductDTO, Product>();
             CreateMap<UpdateProductDTO, Product>();
+            //ProductPromotion Automappers
+            CreateMap<Promotion, GetProductPromotionDTO>();
+            CreateMap<GetProductPromotionDTO, Promotion>();
+            CreateMap<CreateNewPromotionDTO, Promotion>();
+            CreateMap<UpdatePromotionDTO, Promotion>();
+            CreateMap<AddProductPromotionDTO, Promotion>();
+
         }
     }
 }

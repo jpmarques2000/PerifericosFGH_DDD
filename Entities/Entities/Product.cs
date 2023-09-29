@@ -21,6 +21,6 @@ namespace Entities.Entities
         public decimal Preco { get; set; }
 
         public ICollection<Order>? Order { get; set;}
-        public ICollection<ProductPromotion>? Promotion { get;}
+        public ICollection<Promotion>? Promotion { get;}
     }
 }
