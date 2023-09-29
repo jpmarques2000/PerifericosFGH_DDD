@@ -18,7 +18,7 @@ namespace WebAPIs.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get() 
+        public async Task<IActionResult> Get()
         {
             return Ok(await _productRepository.GetAll());
         }
@@ -32,21 +32,22 @@ namespace WebAPIs.Controllers
         [HttpPost]
         public async Task<ActionResult<ICollection<GetProductDTO>>> AddProduct(AddProductDTO productDTO)
         {
-            return Ok(await _productRepository.AddNewProduct(productDTO));  
+            return Ok(await _productRepository.AddNewProduct(productDTO));
         }
 
         [HttpPut]
         public async Task<ActionResult<GetProductDTO>> UpdateProduct(UpdateProductDTO updatedProduct)
         {
-            return Ok(await _productRepository.UpdateProduct(updatedProduct));  
+            return Ok(await _productRepository.UpdateProduct(updatedProduct));
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteProduct(int Id)
         {
             var product = await _productRepository.GetById(Id);
-            return Ok(
-                _productRepository.Delete(product));
+
+            await _productRepository.Delete(product);
+            return Ok("Produto removido com sucesso.");
         }
     }
 }

@@ -42,7 +42,8 @@ namespace Infraestructure.Repository.Generics
 
         public async Task<T> GetById(int Id)
         {
-            return await _dbset.FindAsync(Id);
+            var t =  await _dbset.FindAsync(Id);
+            return t;
         }
 
         public async Task<ICollection<T>> GetAll()
