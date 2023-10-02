@@ -21,12 +21,6 @@ namespace Infraestructure.Repository.Repositories
             _mapper = mapper;
         }
 
-        public Task<ServiceResponse<GetProductPromotionDTO>>
-            AddProductPromotion(AddProductPromotionDTO productPromotion)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<ServiceResponse<ICollection<GetProductPromotionDTO>>>
             CreateNewPromotion(CreateNewPromotionDTO newPromotion)
         {
@@ -55,10 +49,7 @@ namespace Infraestructure.Repository.Repositories
             return serviceResponse;
         }
 
-        public Task<ServiceResponse<GetProductPromotionDTO>> DeleteProductPromotion(DeleteProductPromotionDTO productPromotion)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public async Task<ServiceResponse<GetProductPromotionDTO>> UpdatePromotion(UpdatePromotionDTO updatedPromotion)
         {
@@ -74,6 +65,88 @@ namespace Infraestructure.Repository.Repositories
 
                 serviceResponse.Data = _mapper.Map<GetProductPromotionDTO>(promotion);
                 serviceResponse.Message = ("Promoção atualizada.");
+            }
+            catch (Exception ex)
+            {
+
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<GetProductPromotionDTO>>
+            AddProductPromotion(AddProductPromotionDTO productsPromotion)
+        {
+            var serviceResponse = new ServiceResponse<GetProductPromotionDTO>();
+
+            try
+            {
+                var promotion = await _context.Promotion.Include(x => x.Product)
+                    .FirstOrDefaultAsync(pp => pp.Id == productsPromotion.PromotionId);
+
+                if (promotion is null)
+                {
+                    serviceResponse.Success = false;
+                    serviceResponse.Message = "Promoção não encontrada";
+                    return serviceResponse;
+                }
+
+                var product = await _context.Product
+                    .FirstOrDefaultAsync(p => p.Id == productsPromotion.ProductsId);
+
+                if(product is null)
+                {
+                    serviceResponse.Success = false;
+                    serviceResponse.Message = "Produto não encontrado";
+                    return serviceResponse;
+                }
+
+                promotion.Product!.Add(product);
+                await _context.SaveChangesAsync();
+                serviceResponse.Data = _mapper.Map<GetProductPromotionDTO>(promotion);
+                serviceResponse.Message = "Produto adicionado a promoção com sucesso";
+            }
+            catch (Exception ex)
+            {
+
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<GetProductPromotionDTO>> 
+            DeleteProductPromotion(DeleteProductPromotionDTO deletedProduct)
+        {
+            var serviceResponse = new ServiceResponse<GetProductPromotionDTO>();
+
+            try
+            {
+                var promotion = await _context.Promotion.Include(p => p.Product)
+                    .FirstOrDefaultAsync(pp => pp.Id == deletedProduct.PromotionId);
+
+                if (promotion is null)
+                {
+                    serviceResponse.Success = false;
+                    serviceResponse.Message = "Promoção não encontrada";
+                    return serviceResponse;
+                }
+
+                var product = await _context.Product
+                    .FirstOrDefaultAsync(p => p.Id == deletedProduct.ProductsId);
+
+                if (product is null)
+                {
+                    serviceResponse.Success = false;
+                    serviceResponse.Message = "Produto não encontrado";
+                    return serviceResponse;
+                }
+
+                promotion.Product!.Remove(product);
+                await _context.SaveChangesAsync();
+                serviceResponse.Data = _mapper.Map<GetProductPromotionDTO>(promotion);
+                serviceResponse.Message = "Produto removido da promoção com sucesso";
             }
             catch (Exception ex)
             {

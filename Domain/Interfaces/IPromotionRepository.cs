@@ -21,10 +21,10 @@ namespace Domain.Interfaces
 
         //Adds a new product to a promotion
         Task<ServiceResponse<GetProductPromotionDTO>> 
-            AddProductPromotion(AddProductPromotionDTO productPromotion);
+            AddProductPromotion(AddProductPromotionDTO productsPromotion);
 
         //Removes a product from a promotion
         Task<ServiceResponse<GetProductPromotionDTO>>
-            DeleteProductPromotion(DeleteProductPromotionDTO productPromotion);
+            DeleteProductPromotion(DeleteProductPromotionDTO deletedProduct);
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infraestructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Inicial : Migration
+    public partial class Primeira : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -125,23 +125,23 @@ namespace Infraestructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductProductPromotion",
+                name: "ProductPromotion",
                 columns: table => new
                 {
-                    ProductsId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
                     PromotionId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductProductPromotion", x => new { x.ProductsId, x.PromotionId });
+                    table.PrimaryKey("PK_ProductPromotion", x => new { x.ProductId, x.PromotionId });
                     table.ForeignKey(
-                        name: "FK_ProductProductPromotion_Product_ProductsId",
-                        column: x => x.ProductsId,
+                        name: "FK_ProductPromotion_Product_ProductId",
+                        column: x => x.ProductId,
                         principalTable: "Product",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProductProductPromotion_Promotion_PromotionId",
+                        name: "FK_ProductPromotion_Promotion_PromotionId",
                         column: x => x.PromotionId,
                         principalTable: "Promotion",
                         principalColumn: "Id",
@@ -173,8 +173,8 @@ namespace Infraestructure.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -218,8 +218,8 @@ namespace Infraestructure.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -331,8 +331,8 @@ namespace Infraestructure.Migrations
                 column: "ProductsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductProductPromotion_PromotionId",
-                table: "ProductProductPromotion",
+                name: "IX_ProductPromotion_PromotionId",
+                table: "ProductPromotion",
                 column: "PromotionId");
         }
 
@@ -358,7 +358,7 @@ namespace Infraestructure.Migrations
                 name: "OrderProduct");
 
             migrationBuilder.DropTable(
-                name: "ProductProductPromotion");
+                name: "ProductPromotion");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -46,7 +46,7 @@ namespace Infraestructure.Migrations
 
                     b.HasKey("Cep");
 
-                    b.ToTable("Address", (string)null);
+                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("Entities.Entities.ApplicationUser", b =>
@@ -145,7 +145,7 @@ namespace Infraestructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Order", (string)null);
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("Entities.Entities.Product", b =>
@@ -169,10 +169,10 @@ namespace Infraestructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Product", (string)null);
+                    b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("Entities.Entities.ProductPromotion", b =>
+            modelBuilder.Entity("Entities.Entities.Promotion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -186,7 +186,7 @@ namespace Infraestructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Promotion", (string)null);
+                    b.ToTable("Promotion");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -269,10 +269,12 @@ namespace Infraestructure.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -309,10 +311,12 @@ namespace Infraestructure.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -334,22 +338,22 @@ namespace Infraestructure.Migrations
 
                     b.HasIndex("ProductsId");
 
-                    b.ToTable("OrderProduct", (string)null);
+                    b.ToTable("OrderProduct");
                 });
 
-            modelBuilder.Entity("ProductProductPromotion", b =>
+            modelBuilder.Entity("ProductPromotion", b =>
                 {
-                    b.Property<int>("ProductsId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<int>("PromotionId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductsId", "PromotionId");
+                    b.HasKey("ProductId", "PromotionId");
 
                     b.HasIndex("PromotionId");
 
-                    b.ToTable("ProductProductPromotion", (string)null);
+                    b.ToTable("ProductPromotion");
                 });
 
             modelBuilder.Entity("Entities.Entities.ApplicationUser", b =>
@@ -438,15 +442,15 @@ namespace Infraestructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProductProductPromotion", b =>
+            modelBuilder.Entity("ProductPromotion", b =>
                 {
                     b.HasOne("Entities.Entities.Product", null)
                         .WithMany()
-                        .HasForeignKey("ProductsId")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Entities.ProductPromotion", null)
+                    b.HasOne("Entities.Entities.Promotion", null)
                         .WithMany()
                         .HasForeignKey("PromotionId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -1,4 +1,5 @@
-﻿using Entities.Entities;
+﻿using Domain.Services.DTO.ProductDTO;
+using Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,6 @@ namespace Domain.Services.DTO.PromotionDTO
     {
         public int Id { get; set; }
         public string? Nome { get; set; }
-        public ICollection<Product>? Products { get; set; }
+        public ICollection<GetProductDTO>? Product { get; set; }
     }
 }

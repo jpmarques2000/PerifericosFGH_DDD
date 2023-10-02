@@ -50,5 +50,19 @@ namespace WebAPIs.Controllers
             await _promotionRepository.Delete(promotion);
             return Ok("Promoção removida com sucesso");
         }
+
+        [HttpPost("add-product-promotion")]
+        public async Task<ActionResult<ServiceResponse<GetProductPromotionDTO>>>
+            AddProductPromotion(AddProductPromotionDTO productsPromotion)
+        {
+            return Ok(await _promotionRepository.AddProductPromotion(productsPromotion));
+        }
+
+        [HttpDelete("delete-product-promotion")]
+        public async Task<ActionResult<ServiceResponse<GetProductPromotionDTO>>>
+            DeleteProductPromotion(DeleteProductPromotionDTO productPromotion)
+        {
+            return Ok(await _promotionRepository.DeleteProductPromotion(productPromotion));
+        }
     }
 }

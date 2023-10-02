@@ -13,6 +13,6 @@ namespace Entities.Entities
         [Column(TypeName = "varchar(80)")]
         [Required]
         public string? Nome { get; set; }
-        public ICollection<Product>? Products { get; set;}
+        public ICollection<Product>? Product { get; set;}
     }
 }
