@@ -32,6 +32,13 @@ namespace Infraestructure.Repository.Repositories
 
             try
             {
+                var verifyExists = await _context.Address.FirstOrDefaultAsync(a => a.Cep == newAddress.Cep);
+                if (verifyExists != null)
+                {
+                    serviceResponse.Success = false;
+                    serviceResponse.Message = "Endereço com esse cep já existente";
+                    return serviceResponse;
+                }
                 _context.Address.Add(address);
                 await _context.SaveChangesAsync();
 
