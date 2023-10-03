@@ -26,5 +26,11 @@ namespace Domain.Interfaces
         //Removes a product from a promotion
         Task<ServiceResponse<GetProductPromotionDTO>>
             DeleteProductPromotion(DeleteProductPromotionDTO deletedProduct);
+
+        //Get all promotions and his products
+        Task<ServiceResponse<ICollection<GetProductPromotionDTO>>> GetAllPromotions();
+
+        //Get promotion and his products by id
+        Task<ServiceResponse<GetProductPromotionDTO>> GetPromotionById(int id);
     }
 }

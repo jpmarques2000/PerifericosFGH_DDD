@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231002184929_Primeira")]
+    [Migration("20231003173254_Primeira")]
     partial class Primeira
     {
         /// <inheritdoc />
@@ -27,15 +27,18 @@ namespace Infraestructure.Migrations
 
             modelBuilder.Entity("Entities.Entities.Address", b =>
                 {
-                    b.Property<int>("Cep")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Cep"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Bairro")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
+
+                    b.Property<int>("Cep")
+                        .HasColumnType("int");
 
                     b.Property<string>("Complemento")
                         .HasColumnType("varchar(80)");
@@ -47,7 +50,7 @@ namespace Infraestructure.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
-                    b.HasKey("Cep");
+                    b.HasKey("Id");
 
                     b.ToTable("Address");
                 });
@@ -76,6 +79,9 @@ namespace Infraestructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<int>("EnderecoCEP")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("EnderecoId")
                         .HasColumnType("int");
 
                     b.Property<bool>("LockoutEnabled")
@@ -117,7 +123,7 @@ namespace Infraestructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EnderecoCEP");
+                    b.HasIndex("EnderecoId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -363,9 +369,7 @@ namespace Infraestructure.Migrations
                 {
                     b.HasOne("Entities.Entities.Address", "Endereco")
                         .WithMany()
-                        .HasForeignKey("EnderecoCEP")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EnderecoId");
 
                     b.Navigation("Endereco");
                 });

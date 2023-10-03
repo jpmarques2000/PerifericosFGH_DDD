@@ -61,6 +61,13 @@ namespace Infraestructure.Repository.Repositories
 
             var response = await _userManager.CreateAsync(user, password);
 
+            if (!response.Succeeded)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = response.ToString();
+                return serviceResponse;
+            }
+
             serviceResponse.Message = "Novo usuário criado com sucesso.";
             return serviceResponse;
         }

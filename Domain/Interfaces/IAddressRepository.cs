@@ -10,9 +10,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
-    public interface IAddressRepository 
+    public interface IAddressRepository : IGeneric<Address>
     {
         Task<ServiceResponse<ICollection<GetAddressDTO>>> AddAddress(AddAddressDTO newAddress);
         Task<ServiceResponse<GetAddressDTO>> UpdateAddress(UpdateAddressDTO updatedAddress);
+        Task<ServiceResponse<GetAddressDTO>> GetByCep(int cep);
+        Task<ServiceResponse<ICollection<GetAddressDTO>>> DeleteAddress(int cep);
     }
 }

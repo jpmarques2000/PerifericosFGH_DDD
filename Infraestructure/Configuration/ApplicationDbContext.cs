@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Reflection.Metadata;
 
 namespace Infraestructure.Configuration
 {
@@ -28,7 +29,9 @@ namespace Infraestructure.Configuration
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Address>().Property<int>("Id").IsRequired();
+            modelBuilder.Entity<Address>().HasKey("Id");
+
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
         }

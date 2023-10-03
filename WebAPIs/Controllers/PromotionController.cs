@@ -19,13 +19,13 @@ namespace WebAPIs.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _promotionRepository.GetAll());
+            return Ok(await _promotionRepository.GetAllPromotions());
         }
 
         [HttpGet("get-by-id")]
         public async Task<IActionResult> GetById(int id)
         {
-            return Ok(await _promotionRepository.GetById(id));
+            return Ok(await _promotionRepository.GetPromotionById(id));
         }
 
         [HttpPost]

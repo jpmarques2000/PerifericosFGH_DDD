@@ -12,10 +12,8 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Entities.Entities
 {
-    public class Address 
+    public class Address : ValueObject
     {
-        [Key]
-        [Required]
         public int Cep { get; set; }
 
         [Column(TypeName = "varchar(50)")]
@@ -41,13 +39,13 @@ namespace Entities.Entities
             Complemento = complemento;
         }
 
-        //protected override IEnumerable<object> GetEqualityComponents()
-        //{
-        //    yield return Cep;
-        //    yield return Rua;
-        //    yield return Bairro;
-        //    yield return Numero;
-        //    yield return Complemento;
-        //}
+        protected override IEnumerable<object> GetEqualityComponents()
+        {
+            yield return Cep;
+            yield return Rua;
+            yield return Bairro;
+            yield return Numero;
+            yield return Complemento;
+        }
     }
 }

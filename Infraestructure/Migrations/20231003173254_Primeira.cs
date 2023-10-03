@@ -15,8 +15,9 @@ namespace Infraestructure.Migrations
                 name: "Address",
                 columns: table => new
                 {
-                    Cep = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Cep = table.Column<int>(type: "int", nullable: false),
                     Rua = table.Column<string>(type: "varchar(50)", nullable: false),
                     Bairro = table.Column<string>(type: "varchar(50)", nullable: false),
                     Numero = table.Column<int>(type: "int", nullable: false),
@@ -24,7 +25,7 @@ namespace Infraestructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Address", x => x.Cep);
+                    table.PrimaryKey("PK_Address", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -77,6 +78,7 @@ namespace Infraestructure.Migrations
                     USER_TYPE = table.Column<int>(type: "int", nullable: true),
                     EnderecoCEP = table.Column<int>(type: "int", nullable: false),
                     CPF = table.Column<string>(type: "varchar(20)", nullable: false),
+                    EnderecoId = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -96,11 +98,10 @@ namespace Infraestructure.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_Address_EnderecoCEP",
-                        column: x => x.EnderecoCEP,
+                        name: "FK_AspNetUsers_Address_EnderecoId",
+                        column: x => x.EnderecoId,
                         principalTable: "Address",
-                        principalColumn: "Cep",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -309,9 +310,9 @@ namespace Infraestructure.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_EnderecoCEP",
+                name: "IX_AspNetUsers_EnderecoId",
                 table: "AspNetUsers",
-                column: "EnderecoCEP");
+                column: "EnderecoId");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",

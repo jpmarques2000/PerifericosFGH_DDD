@@ -51,13 +51,18 @@ namespace Infraestructure.Repository.Repositories
 
 
 
+
+
+
+
         public async Task<ServiceResponse<GetProductPromotionDTO>> UpdatePromotion(UpdatePromotionDTO updatedPromotion)
         {
             var serviceResponse = new ServiceResponse<GetProductPromotionDTO>();
 
             try
             {
-                var promotion = await _context.Promotion.FirstOrDefaultAsync(p => p.Id == updatedPromotion.Id)
+                var promotion = await _context.Promotion.Include(x => x.Product)
+                    .FirstOrDefaultAsync(p => p.Id == updatedPromotion.Id)
                     ?? throw new Exception($"Promoção {updatedPromotion.Nome} não foi encontrada."); ;
 
                 promotion.Nome = updatedPromotion.Nome;
@@ -151,6 +156,39 @@ namespace Infraestructure.Repository.Repositories
             catch (Exception ex)
             {
 
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<ICollection<GetProductPromotionDTO>>> GetAllPromotions()
+        {
+            var serviceResponse = new ServiceResponse<ICollection<GetProductPromotionDTO>>();
+
+            var promotions = await _context.Promotion.Include(p => p.Product).ToListAsync();
+
+            serviceResponse.Data = 
+                promotions.Select(p => _mapper.Map<GetProductPromotionDTO>(p)).ToList();
+
+            serviceResponse.Message = "Listagem de promoções";
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<GetProductPromotionDTO>> GetPromotionById(int id)
+        {
+            var serviceResponse = new ServiceResponse<GetProductPromotionDTO>();
+
+            try
+            {
+                var promotion = await _context.Promotion
+                    .Include(p => p.Product)
+                    .FirstOrDefaultAsync(pp => pp.Id == id);
+
+                serviceResponse.Data = _mapper.Map<GetProductPromotionDTO>(promotion);
+            }
+            catch (Exception ex)
+            {
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.Message;
             }

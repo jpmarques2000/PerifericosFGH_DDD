@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Domain.Interfaces;
 using Domain.Services.DTO.AddressDTO;
+using Domain.Services.DTO.PromotionDTO;
 using Entities.Entities;
 using Infraestructure.Configuration;
 using Infraestructure.DTO.AddressDTO;
+using Infraestructure.Repository.Generics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -14,30 +16,19 @@ using System.Threading.Tasks;
 
 namespace Infraestructure.Repository.Repositories
 {
-    public class AddressRepository : IAddressRepository
+    public class AddressRepository : GenericsRepository<Address> ,IAddressRepository
     {
         private readonly IMapper _mapper;
-        private readonly ApplicationDbContext _context;
 
-        public AddressRepository(IMapper mapper, ApplicationDbContext context)
+        public AddressRepository(ApplicationDbContext context, IMapper mapper) : base(context)
         {
             _mapper = mapper;
-            _context = context;
         }
 
         public async Task<ServiceResponse<ICollection<GetAddressDTO>>> AddAddress(AddAddressDTO newAddress)
         {
             var serviceResponse = new ServiceResponse<ICollection<GetAddressDTO>>();
             var address = _mapper.Map<Address>(newAddress);
-
-            //var validation = address.verifyStringIsNull(address.Cep.ToString(), "Cep");
-
-            //if (!validation)
-            //{
-            //    serviceResponse.Success = false;
-            //    serviceResponse.Message = (validation.ToString());
-            //    return serviceResponse;
-            //}
 
             try
             {
@@ -95,6 +86,54 @@ namespace Infraestructure.Repository.Repositories
                 serviceResponse.Message = ex.Message;
             }
 
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<GetAddressDTO>> GetByCep(int cep)
+        {
+            var serviceResponse = new ServiceResponse<GetAddressDTO>();
+
+            try
+            {
+                var address = await _context.Address
+                    .FirstOrDefaultAsync(a => a.Cep == cep);
+
+                serviceResponse.Data = _mapper.Map<GetAddressDTO>(address);
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<ICollection<GetAddressDTO>>> DeleteAddress(int cep)
+        {
+            var serviceResponse = new ServiceResponse<ICollection<GetAddressDTO>>();
+
+            try
+            {
+                var address = await _context.Address
+                    .FirstOrDefaultAsync(a => a.Cep == cep);
+
+                if (address is null)
+                    throw new Exception($"Endereço cep '{cep}' não encontrado");
+
+                _context.Address.Remove(address);
+                await _context.SaveChangesAsync();
+
+                serviceResponse.Data =
+                    await _context.Address.Where(c => c.Cep == cep)
+                    .Select(c => _mapper.Map<GetAddressDTO>(c)).ToListAsync();
+
+            }
+            catch (Exception ex)
+            {
+
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;   
+            }
             return serviceResponse;
         }
     }
