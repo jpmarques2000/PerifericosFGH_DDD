@@ -1,5 +1,7 @@
 using Domain.Interfaces;
 using Domain.Interfaces.Generics;
+using Domain.Interfaces.InterfaceServices;
+using Domain.Services;
 using Entities.Entities;
 using Infraestructure.Configuration;
 using Infraestructure.Repository.Generics;
@@ -32,6 +34,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 builder.Services.AddScoped<IAddressRepository, AddressRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IPromotionRepository, PromotionRepository>();
+builder.Services.AddScoped<IAddressService, AddressService>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddMemoryCache();
 

@@ -11,6 +11,8 @@ namespace Domain.Interfaces.InterfaceServices
 {
     public interface IAddressService
     {
-        
+        Task<ServiceResponse<ICollection<GetAddressDTO>>> Add(AddAddressDTO newAddress);
+        Task<ServiceResponse<GetAddressDTO>> Update(UpdateAddressDTO updatedAddress);
+        Task<ServiceResponse<ICollection<GetAddressDTO>>> Delete(int cep);
     }
 }

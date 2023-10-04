@@ -1,5 +1,6 @@
 ﻿using Domain.Interfaces;
 using Domain.Interfaces.InterfaceServices;
+using Domain.Services;
 using Domain.Services.DTO.AddressDTO;
 using Entities.Entities;
 using Infraestructure.DTO.AddressDTO;
@@ -14,10 +15,12 @@ namespace WebAPIs.Controllers
     public class AddressController : ControllerBase
     {
         private readonly IAddressRepository _addressRepository;
+        private readonly IAddressService _addressService;
 
-        public AddressController(IAddressRepository addressRepository)
+        public AddressController(IAddressRepository addressRepository, IAddressService addressService)
         {
             _addressRepository = addressRepository;
+            _addressService = addressService;
         }
 
         [HttpGet]
@@ -36,20 +39,20 @@ namespace WebAPIs.Controllers
         public async Task<ActionResult<ServiceResponse<ICollection<GetAddressDTO>>>> 
             AddNewAddress(AddAddressDTO newAddress)
         {
-            return Ok(await _addressRepository.AddAddress(newAddress));
+            return Ok(await _addressService.Add(newAddress));   
         }
 
         [HttpPut]
         public async Task<ActionResult<ServiceResponse<GetAddressDTO>>> 
             UpdateAddress(UpdateAddressDTO updatedAddress)
         {
-            return Ok(await _addressRepository.UpdateAddress(updatedAddress));
+            return Ok(await _addressService.Update(updatedAddress));
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteAddress(int cep)
         {
-            await _addressRepository.DeleteAddress(cep);
+            await _addressService.Delete(cep);
             return Ok("Endereço removido com sucesso");
         }
     }
