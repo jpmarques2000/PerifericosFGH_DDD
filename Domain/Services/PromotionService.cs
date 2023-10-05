@@ -46,7 +46,7 @@ namespace Domain.Services
 
         public async Task<object> Get()
         {
-            return await _promotionRepository.GetAll();
+            return await _promotionRepository.GetAllPromotions();
         }
 
         public async Task<object> GetById(int productId)

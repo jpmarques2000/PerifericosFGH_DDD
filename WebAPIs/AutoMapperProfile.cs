@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Services.DTO.AddressDTO;
+using Domain.Services.DTO.OrderDTO;
 using Domain.Services.DTO.ProductDTO;
 using Domain.Services.DTO.PromotionDTO;
 using Entities.Entities;
@@ -33,6 +34,11 @@ namespace Domain.Services
             CreateMap<CreateNewPromotionDTO, Promotion>();
             CreateMap<UpdatePromotionDTO, Promotion>();
             CreateMap<AddProductPromotionDTO, Promotion>();
+            //Order Automappers
+            CreateMap<Order, GetOrderDTO>();
+            CreateMap<GetOrderDTO, Order>();
+            CreateMap<AddOrderDTO, Order>();
+            CreateMap<AddNewProductOrderDTO, Order>();
 
         }
     }
