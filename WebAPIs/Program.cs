@@ -31,11 +31,17 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 //builder.Services.AddScoped(typeof(IGeneric<>), typeof(GenericsRepository<>));
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+//Repositories
 builder.Services.AddScoped<IAddressRepository, AddressRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IPromotionRepository, PromotionRepository>();
-builder.Services.AddScoped<IAddressService, AddressService>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+
+//Domain Services
+builder.Services.AddScoped<IAddressService, AddressService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IPromotionService, PromotionService>();
 builder.Services.AddMemoryCache();
 
 var app = builder.Build();
