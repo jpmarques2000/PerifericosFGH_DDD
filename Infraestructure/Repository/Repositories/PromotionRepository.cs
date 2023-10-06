@@ -49,12 +49,6 @@ namespace Infraestructure.Repository.Repositories
             return serviceResponse;
         }
 
-
-
-
-
-
-
         public async Task<ServiceResponse<GetProductPromotionDTO>> UpdatePromotion(UpdatePromotionDTO updatedPromotion)
         {
             var serviceResponse = new ServiceResponse<GetProductPromotionDTO>();

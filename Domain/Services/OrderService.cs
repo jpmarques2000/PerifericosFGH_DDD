@@ -1,4 +1,5 @@
-﻿using Domain.Interfaces;
+﻿using AutoMapper;
+using Domain.Interfaces;
 using Domain.Interfaces.InterfaceServices;
 using Domain.Services.DTO.OrderDTO;
 using Entities.Entities;
@@ -14,14 +15,17 @@ namespace Domain.Services
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IProductRepository _productRepository;
+        private readonly IMapper _mapper;
 
-        public OrderService(IOrderRepository orderRepository, IProductRepository productRepository)
+        public OrderService(IOrderRepository orderRepository,
+            IProductRepository productRepository, IMapper mapper)
         {
             _orderRepository = orderRepository;
             _productRepository = productRepository;
+            _mapper = mapper;
         }
 
-        public async Task<ServiceResponse<ICollection<GetOrderDTO>>> Add(AddOrderDTO newOrder)
+        public async Task<ServiceResponse<GetOrderDTO>> Add(AddOrderDTO newOrder)
         {
             return await _orderRepository.CreateOrder(newOrder);
         }
@@ -48,9 +52,9 @@ namespace Domain.Services
             return await _orderRepository.AddOrderProduct(order, product);
         }
 
-        public async Task<ServiceResponse<ICollection<GetOrderDTO>>> Delete(int Id)
+        public async Task<ServiceResponse<GetOrderDTO>> Delete(int Id)
         {
-            var serviceResponse = new ServiceResponse<ICollection<GetOrderDTO>>();
+            var serviceResponse = new ServiceResponse<GetOrderDTO>();
 
             var order = await _orderRepository.GetById(Id);
             if (order == null)
@@ -84,16 +88,14 @@ namespace Domain.Services
             return await _orderRepository.DeleteOrderProduct(order, product);
         }
 
-        public async Task<ServiceResponse<ICollection<GetOrderDTO>>> Get()
+        public async Task<Object> Get()
         {
-            var orders = await _orderRepository.GetAllOrders();
-            return orders;
+            return await _orderRepository.GetAllOrders();
         }
 
-        public async Task<ServiceResponse<GetOrderDTO>> GetById(int id)
+        public async Task<Object> GetById(int id)
         {
-            var order = await _orderRepository.GetOrderById(id);
-            return order;
+            return await _orderRepository.GetOrderById(id);
         }
     }
 }

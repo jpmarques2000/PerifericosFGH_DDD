@@ -13,8 +13,8 @@ namespace Domain.Interfaces
     {
         Task<ServiceResponse<ICollection<GetOrderDTO>>> GetAllOrders();
         Task<ServiceResponse<GetOrderDTO>> GetOrderById(int id);
-        Task<ServiceResponse<ICollection<GetOrderDTO>>> CreateOrder(AddOrderDTO newOrder);
-        Task<ServiceResponse<ICollection<GetOrderDTO>>> DeleteOrder(Order order);
+        Task<ServiceResponse<GetOrderDTO>> CreateOrder(AddOrderDTO newOrder);
+        Task<ServiceResponse<GetOrderDTO>> DeleteOrder(Order order);
         Task<ServiceResponse<GetOrderDTO>> AddOrderProduct(Order order, Product product);
         Task<ServiceResponse<GetOrderDTO>> DeleteOrderProduct(Order order, Product product);
         Task<ServiceResponse<ICollection<GetOrderDTO>>> GetOrdersByProductId(int id);

@@ -8,6 +8,6 @@ namespace Domain.Services.DTO.OrderDTO
 {
     public class AddOrderDTO
     {
-        public int UserId { get; set; }
+        public string? UserId { get; set; }
     }
 }

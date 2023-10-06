@@ -39,6 +39,7 @@ namespace Domain.Services
             CreateMap<GetOrderDTO, Order>();
             CreateMap<AddOrderDTO, Order>();
             CreateMap<AddNewProductOrderDTO, Order>();
+            CreateMap<Order, AddNewProductOrderDTO>();
 
         }
     }

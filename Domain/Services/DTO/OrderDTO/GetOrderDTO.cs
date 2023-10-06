@@ -1,4 +1,5 @@
 ﻿using Domain.Services.DTO.ProductDTO;
+using Domain.Services.DTO.UserDTO;
 using Entities.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Domain.Services.DTO.OrderDTO
     public class GetOrderDTO
     {
         public int Id { get; set; }
-        public ApplicationUser? User { get; set; }
+        //public ApplicationUser? User { get; set; }
         public ICollection<GetProductDTO>? Products { get; set; }
     }
 }
