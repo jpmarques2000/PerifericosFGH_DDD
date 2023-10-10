@@ -4,6 +4,7 @@ using Domain.Interfaces.InterfaceServices;
 using Domain.Services;
 using Entities.Entities;
 using Infraestructure.Configuration;
+using Infraestructure.Logging;
 using Infraestructure.Repository.Generics;
 using Infraestructure.Repository.Repositories;
 using Microsoft.AspNetCore.Identity;
@@ -46,6 +47,12 @@ builder.Services.AddScoped<IPromotionService, PromotionService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddMemoryCache();
 
+builder.Logging.ClearProviders();
+builder.Logging.AddProvider(new CustomLoggerProvider(new CustomLoggerProviderConfiguration()
+{
+    LogLevel = LogLevel.Information
+}));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -54,6 +61,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseReDoc(c =>
+{
+    c.DocumentTitle = "Loja de periféricos FGH";
+    c.RoutePrefix = "";
+});
 
 app.UseHttpsRedirection();
 
