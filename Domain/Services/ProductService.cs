@@ -5,6 +5,7 @@ using Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,6 +40,7 @@ namespace Domain.Services
         {
             var product = await _productRepository.GetById(Id);
             await _productRepository.Delete(product);
+
         }
 
         public async Task<object> Get()
@@ -49,6 +51,16 @@ namespace Domain.Services
         public async Task<object> GetById(int productId)
         {
             return await _productRepository.GetById(productId);
+        }
+
+        public async Task<bool> VerifyProductExists(int productId)
+        {
+            var productExists = await _productRepository.GetById(productId);
+            if (productExists is not null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

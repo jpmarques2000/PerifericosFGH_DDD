@@ -3,6 +3,7 @@ using Domain.Interfaces.InterfaceServices;
 using Domain.Services.DTO.AddressDTO;
 using Entities.Entities;
 using Infraestructure.DTO.AddressDTO;
+using System.Collections;
 
 namespace Domain.Services
 {
@@ -45,6 +46,16 @@ namespace Domain.Services
                 serviceResponse.Success = false;
                 return serviceResponse;
             }
+        }
+
+        public async Task<object> Get()
+        {
+            return await _addressRepository.GetAll();
+        }
+
+        public async Task<ServiceResponse<GetAddressDTO>> GetByCep(int cep)
+        {
+            return await _addressRepository.GetByCep(cep);
         }
 
         public async Task<ServiceResponse<GetAddressDTO>> Update(UpdateAddressDTO updatedAddress)

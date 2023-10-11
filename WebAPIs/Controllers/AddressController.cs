@@ -15,14 +15,12 @@ namespace WebAPIs.Controllers
     [Route("/api/Address")]
     public class AddressController : ControllerBase
     {
-        private readonly IAddressRepository _addressRepository;
         private readonly IAddressService _addressService;
         private readonly ILogger<AddressController> _logger;
 
-        public AddressController(IAddressRepository addressRepository, IAddressService addressService,
+        public AddressController(IAddressService addressService,
             ILogger<AddressController> logger)
         {
-            _addressRepository = addressRepository;
             _addressService = addressService;
             _logger = logger;
         }
@@ -38,7 +36,7 @@ namespace WebAPIs.Controllers
         public async Task<object> GetAllAddress()
         {
             _logger.LogInformation($"{DateTime.Now} | Carregando listagem de endereços");
-            return Ok(await _addressRepository.GetAll());
+            return Ok(await _addressService.Get());
         }
 
         /// <summary>
@@ -58,7 +56,7 @@ namespace WebAPIs.Controllers
             try
             {
                 _logger.LogInformation($"{DateTime.Now} | Buscando endereço cep: '{cep}'");
-                return Ok(await _addressRepository.GetByCep(cep));
+                return Ok(await _addressService.GetByCep(cep));
             }
             catch (Exception ex)
             {

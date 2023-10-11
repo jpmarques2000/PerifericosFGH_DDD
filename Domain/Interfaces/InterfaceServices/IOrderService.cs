@@ -10,8 +10,8 @@ namespace Domain.Interfaces.InterfaceServices
 {
     public interface IOrderService
     {
-        Task<Object> Get();
-        Task<Object> GetById(int id);
+        Task<object> Get();
+        Task<object> GetById(int id);
         Task<ServiceResponse<GetOrderDTO>> Add(AddOrderDTO newOrder);
         Task<ServiceResponse<GetOrderDTO>> Delete(int Id);
         Task<ServiceResponse<GetOrderDTO>> AddOrderProduct(AddNewProductOrderDTO productOrder);
