@@ -7,9 +7,13 @@ using Infraestructure.Configuration;
 using Infraestructure.Logging;
 using Infraestructure.Repository.Generics;
 using Infraestructure.Repository.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 using System.Reflection;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +28,16 @@ builder.Services.AddSwaggerGen( c =>
     var xmlfile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlpath = Path.Combine(AppContext.BaseDirectory, xmlfile);
     c.IncludeXmlComments(xmlpath);
+
+    c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+    {
+        Description = """Standard Authorization header using the Bearer scheme. Example: "bearer {token}" """,
+        In = ParameterLocation.Header,
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey
+    });
+
+    c.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 
 builder.Services.AddDbContext<ApplicationDbContext>(ServiceLifetime.Scoped);
@@ -53,6 +67,19 @@ builder.Logging.AddProvider(new CustomLoggerProvider(new CustomLoggerProviderCon
     LogLevel = LogLevel.Information
 }));
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+                    .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value!)),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -70,6 +97,7 @@ app.UseReDoc(c =>
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

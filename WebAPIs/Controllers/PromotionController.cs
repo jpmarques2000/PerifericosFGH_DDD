@@ -2,10 +2,12 @@
 using Domain.Interfaces.InterfaceServices;
 using Domain.Services.DTO.PromotionDTO;
 using Entities.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPIs.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/Promotions")]
     public class PromotionController : ControllerBase

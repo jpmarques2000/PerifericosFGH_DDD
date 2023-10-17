@@ -39,7 +39,7 @@ namespace Infraestructure.Repository.Repositories
             var response = await
                 _signInManager.PasswordSignInAsync(email, password, false, lockoutOnFailure: false);
 
-            if (response is null)
+            if (!response.Succeeded)
             {
                 serviceResponse.Success = false;
                 serviceResponse.Message = "Usuário não encontrado.";

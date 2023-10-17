@@ -5,12 +5,14 @@ using Domain.Services.DTO.AddressDTO;
 using Entities.Entities;
 using Infraestructure.DTO.AddressDTO;
 using Infraestructure.Repository.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
 using System.Runtime.ConstrainedExecution;
 
 namespace WebAPIs.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("/api/Address")]
     public class AddressController : ControllerBase

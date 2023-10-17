@@ -3,10 +3,12 @@ using Domain.Interfaces.Generics;
 using Domain.Interfaces.InterfaceServices;
 using Domain.Services.DTO.ProductDTO;
 using Entities.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPIs.Controllers
 {
+    [Authorize]
     [Route("api/Products")]
     [ApiController]
     public class ProductController : ControllerBase

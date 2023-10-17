@@ -1,11 +1,13 @@
 ﻿using Domain.Interfaces.InterfaceServices;
 using Domain.Services.DTO.OrderDTO;
 using Entities.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPIs.Controllers
 {
+    [Authorize]
     [Route("api/Order")]
     [ApiController]
     public class OrderController : ControllerBase
