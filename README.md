@@ -1,5 +1,5 @@
 
-# PerifericosFGH
+# PeriféricosFGH
 
 ## About this Project:
 
