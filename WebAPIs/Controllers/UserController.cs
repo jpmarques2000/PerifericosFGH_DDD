@@ -83,7 +83,8 @@ namespace WebAPIs.Controllers
                 UserName = userData.Email,
                 Email = userData.Email,
                 CPF = userData.CPF,
-                EnderecoCEP = userData.CEP
+                EnderecoCEP = userData.CEP,
+                EmailConfirmed = true
             }, userData.Password!);
 
             if (!response.Success)

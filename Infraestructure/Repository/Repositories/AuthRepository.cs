@@ -43,6 +43,7 @@ namespace Infraestructure.Repository.Repositories
             {
                 serviceResponse.Success = false;
                 serviceResponse.Message = "Usuário não encontrado.";
+                return serviceResponse;
             }
             else
             {
