@@ -29,13 +29,14 @@ The API has loggers, is fully documented within the application, DTO's and autom
 The application was made using .net 7 with sql server.
 
 ## How to Run:
-In order to run the project you will need to have Visual Studio installed
-With the Project open, select the API_DDD_Loja_PerifericosFGH solution and do the following:
+In order to run the project you will need to have Visual Studio installed.
+
+With the project open, select the API_DDD_Loja_PerifericosFGH solution and do the following:
 * Clean Solution
 * Build Solution
 * Restore NuGetPackages
 
-Go to Package Manager console in Domain Solution and execute the command:
+Go to Package Manager console in Domain solution and execute the command:
 * Update-Database
 
 ## Api Documentation
