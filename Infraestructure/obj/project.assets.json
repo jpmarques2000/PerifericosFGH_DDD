@@ -75,6 +75,15 @@
           }
         }
       },
+      "Flunt/2.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Flunt.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Flunt.dll": {}
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -1277,7 +1286,8 @@
         "dependencies": {
           "AutoMapper": "12.0.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
-          "Entities": "1.0.0"
+          "Entities": "1.0.0",
+          "Flunt": "2.0.5"
         },
         "compile": {
           "bin/placeholder/Domain.dll": {}
@@ -1369,6 +1379,19 @@
         "azureicon.png",
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml"
+      ]
+    },
+    "Flunt/2.0.5": {
+      "sha512": "CMgq8FUYjkHzyZT3PhkUwZyy79mudON+EL4b0SAT7BfIOJ2CNypwnbdA0cPHAM2CYQfO2L8ubNJCiBHQOIv2pA==",
+      "type": "package",
+      "path": "flunt/2.0.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "flunt.2.0.5.nupkg.sha512",
+        "flunt.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/Flunt.dll"
       ]
     },
     "Humanizer.Core/2.14.1": {

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Zbznf552Lxigif7pSvlaVPE+MQLrqAjIJYr9TVvj3qRVv0fVNO2RIkdGQ4g6iq8dNM4nBJ8r7psRP98YP0wgqA==",
+  "dgSpecHash": "gFDAe+Btqq6lYHG96GPqc8amlMTX8jTRNLQ/89wRLPFY3e4lNPdjuae8nt2MO3fhgafGBl3MpQgbxRAkLSz98g==",
   "success": true,
   "projectFilePath": "C:\\Users\\JoaoPaulo\\source\\repos\\Estudos\\Loja_PerifericosFGH\\API_DDD_Loja_PerifericosFGH\\Infraestructure\\Infraestructure.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\JoaoPaulo\\.nuget\\packages\\flunt\\2.0.5\\flunt.2.0.5.nupkg.sha512",
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.11\\microsoft.aspnetcore.authentication.jwtbearer.7.0.11.nupkg.sha512",
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.11\\microsoft.aspnetcore.cryptography.internal.7.0.11.nupkg.sha512",

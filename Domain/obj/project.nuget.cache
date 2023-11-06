@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "WnfgsAKlwoD1pDYGGe2VgV6DxYj36tGZPzWDMAaNpSFPGY1U6/YeovF/UAYO+VxN0TpUhpQ1HYs9bTjbdl3iDw==",
+  "dgSpecHash": "H1UmVmGAyJiOMF9U5EK9FHVXfQsAnRMcN0/tv/cYTyZuFBWYdDFF8WJYCnd4uFop77dRc/X3nSkNQEnM4q7uGA==",
   "success": true,
   "projectFilePath": "C:\\Users\\JoaoPaulo\\source\\repos\\Estudos\\Loja_PerifericosFGH\\API_DDD_Loja_PerifericosFGH\\Domain\\Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\JoaoPaulo\\.nuget\\packages\\flunt\\2.0.5\\flunt.2.0.5.nupkg.sha512",
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.11\\microsoft.aspnetcore.cryptography.internal.7.0.11.nupkg.sha512",
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.11\\microsoft.aspnetcore.cryptography.keyderivation.7.0.11.nupkg.sha512",
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
