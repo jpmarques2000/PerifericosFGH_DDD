@@ -46,6 +46,5 @@ namespace Entities.Entities
             yield return Numero;
             yield return Complemento;
         }
-        //teste
     }
 }
