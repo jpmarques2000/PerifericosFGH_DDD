@@ -38,7 +38,6 @@ namespace Entities.Entities
             Numero = numero;
             Complemento = complemento;
         }
-        //
         protected override IEnumerable<object> GetEqualityComponents()
         {
             yield return Cep;
@@ -46,7 +45,7 @@ namespace Entities.Entities
             yield return Bairro;
             yield return Numero;
             yield return Complemento;
-
         }
+        //teste
     }
 }
