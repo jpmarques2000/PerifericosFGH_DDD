@@ -2,7 +2,6 @@ using Domain.Interfaces;
 using Domain.Interfaces.Generics;
 using Domain.Interfaces.InterfaceServices;
 using Domain.Services;
-using Domain.Services.Shared;
 using Entities.Entities;
 using Infraestructure.Configuration;
 using Infraestructure.Logging;
@@ -47,8 +46,6 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 //builder.Services.AddScoped(typeof(IGeneric<>), typeof(GenericsRepository<>));
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
-
-builder.Services.AddScoped<IBaseNotification, BaseNotification>();
 
 //Repositories
 builder.Services.AddScoped<IAddressRepository, AddressRepository>();

@@ -38,6 +38,7 @@ namespace Entities.Entities
             Numero = numero;
             Complemento = complemento;
         }
+        //
         protected override IEnumerable<object> GetEqualityComponents()
         {
             yield return Cep;

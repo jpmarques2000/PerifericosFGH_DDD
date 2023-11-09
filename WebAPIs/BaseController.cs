@@ -9,6 +9,7 @@ namespace WebAPIs
     public class BaseController : ControllerBase
     {
         private readonly IBaseNotification _baseNotification;
+        private readonly ILogger<BaseController> _logger;
 
         public ProblemDetailsFactory? ProblemDetails => HttpContext?.RequestServices?
             .GetRequiredService<ProblemDetailsFactory>();
@@ -17,8 +18,9 @@ namespace WebAPIs
         /// Constructor
         /// </summary>
         /// <param name="baseNotification"></param>
-        public BaseController(IBaseNotification baseNotification)
+        public BaseController(ILogger<BaseController> logger, IBaseNotification baseNotification)
         {
+            _logger = logger;
             _baseNotification = baseNotification;
         }
 
