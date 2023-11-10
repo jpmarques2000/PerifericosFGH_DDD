@@ -10,13 +10,13 @@ namespace WebAPIs.Controllers
     [Authorize]
     [ApiController]
     [Route("api/Promotions")]
-    public class PromotionController : ControllerBase
+    public class PromotionController : BaseController
     {
         private readonly IPromotionService _promotionService;
         private readonly ILogger<PromotionController> _logger;
 
-        public PromotionController(IPromotionService promotionService,
-            ILogger<PromotionController> logger)
+        public PromotionController(IBaseNotification baseNotification,
+            IPromotionService promotionService, ILogger<PromotionController> logger) : base(baseNotification)
         {
             _promotionService = promotionService;
             _logger = logger;
@@ -33,7 +33,10 @@ namespace WebAPIs.Controllers
         public async Task<IActionResult> Get()
         {
             _logger.LogInformation($"{DateTime.Now} | Carregando listagem de promoções");
-            return Ok(await _promotionService.Get());
+            //return Ok(await _promotionService.Get());
+
+            var result = await _promotionService.Get();
+            return OKOrBadRequest( result );
         }
 
         /// <summary>
@@ -50,16 +53,20 @@ namespace WebAPIs.Controllers
         [HttpGet("get-by-id")]
         public async Task<IActionResult> GetById(int id)
         {
-            try
-            {
-                _logger.LogInformation($"{DateTime.Now} | Carregando promoção '{id}'");
-                return Ok(await _promotionService.GetById(id));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"{DateTime.Now} | Erro ao carregar promoção '{id}'");
-                return BadRequest(ex.Message);
-            }
+            //try
+            //{
+            //    _logger.LogInformation($"{DateTime.Now} | Carregando promoção '{id}'");
+            //    return Ok(await _promotionService.GetById(id));
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, $"{DateTime.Now} | Erro ao carregar promoção '{id}'");
+            //    return BadRequest(ex.Message);
+            //}
+
+            _logger.LogInformation($"{DateTime.Now} | Carregando promoção '{id}'");
+            var result = await _promotionService.GetById(id);
+            return OKOrBadRequest( result );
         }
 
         /// <summary>
@@ -74,19 +81,22 @@ namespace WebAPIs.Controllers
         /// <response code="401">Não Autenticado</response>
         /// <response code="403">Não Autorizado | Sem permissão</response>
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<ICollection<GetProductPromotionDTO>>>>
+        public async Task<IActionResult>
             AddNewPromotion(CreateNewPromotionDTO newPromotion)
         {
-            try
-            {
-                _logger.LogInformation($"{DateTime.Now} | Gerando nova promoção");
-                return Ok(await _promotionService.Add(newPromotion));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"{DateTime.Now} | Erro ao criar nova promoção");
-                return BadRequest(ex.Message);
-            }
+            //try
+            //{
+            //    _logger.LogInformation($"{DateTime.Now} | Gerando nova promoção");
+            //    return Ok(await _promotionService.Add(newPromotion));
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, $"{DateTime.Now} | Erro ao criar nova promoção");
+            //    return BadRequest(ex.Message);
+            //}
+            _logger.LogInformation($"{DateTime.Now} | Gerando nova promoção");
+            var result = await _promotionService.Add(newPromotion);
+            return CreatedOrBadRequest( result );
         }
 
         /// <summary>
@@ -101,21 +111,26 @@ namespace WebAPIs.Controllers
         /// <response code="401">Não Autenticado</response>
         /// <response code="403">Não Autorizado | Sem permissão</response>
         [HttpPut]
-        public async Task<ActionResult<ServiceResponse<GetProductPromotionDTO>>>
+        public async Task<IActionResult>
             UpdatePromotion(UpdatePromotionDTO updatedPromotion)
         {
-            try
-            {
-                _logger.LogInformation($"{DateTime.Now} | Alterando nome da promoção" +
+            //try
+            //{
+            //    _logger.LogInformation($"{DateTime.Now} | Alterando nome da promoção" +
+            //        $" '{updatedPromotion.Id}'");
+            //    return Ok(await _promotionService.Update(updatedPromotion));
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, $"{DateTime.Now} | Erro ao alterar nome da promoção" +
+            //        $" '{updatedPromotion.Id}'");
+            //    return BadRequest(ex.Message);
+            //}
+
+            _logger.LogInformation($"{DateTime.Now} | Alterando nome da promoção" +
                     $" '{updatedPromotion.Id}'");
-                return Ok(await _promotionService.Update(updatedPromotion));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"{DateTime.Now} | Erro ao alterar nome da promoção" +
-                    $" '{updatedPromotion.Id}'");
-                return BadRequest(ex.Message);
-            }
+            var result = await _promotionService.Update(updatedPromotion);
+            return OKOrBadRequest(result);
         }
 
         /// <summary>
@@ -157,21 +172,25 @@ namespace WebAPIs.Controllers
         /// <response code="401">Não Autenticado</response>
         /// <response code="403">Não Autorizado | Sem permissão</response>
         [HttpPost("add-product-promotion")]
-        public async Task<ActionResult<ServiceResponse<GetProductPromotionDTO>>>
+        public async Task<IActionResult>
             AddProductPromotion(AddProductPromotionDTO productsPromotion)
         {
-            try
-            {
-                _logger.LogInformation($"{DateTime.Now} | Adicionando produto" +
+            //try
+            //{
+            //    _logger.LogInformation($"{DateTime.Now} | Adicionando produto" +
+            //        $" '{productsPromotion.ProductsId}' na promoção '{productsPromotion.PromotionId}'");
+            //    return Ok(await _promotionService.AddProductPromotion(productsPromotion));
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, $"{DateTime.Now} | Erro ao adicionar produto" +
+            //        $" '{productsPromotion.ProductsId}' na promoção '{productsPromotion.PromotionId}'");
+            //    return BadRequest(ex.Message);
+            //}
+            _logger.LogInformation($"{DateTime.Now} | Adicionando produto" +
                     $" '{productsPromotion.ProductsId}' na promoção '{productsPromotion.PromotionId}'");
-                return Ok(await _promotionService.AddProductPromotion(productsPromotion));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"{DateTime.Now} | Erro ao adicionar produto" +
-                    $" '{productsPromotion.ProductsId}' na promoção '{productsPromotion.PromotionId}'");
-                return BadRequest(ex.Message);
-            }
+            var result = await _promotionService.AddProductPromotion(productsPromotion);
+            return CreatedOrBadRequest(result);
         }
 
         /// <summary>
@@ -188,22 +207,27 @@ namespace WebAPIs.Controllers
         /// <response code="401">Não Autenticado</response>
         /// <response code="403">Não Autorizado | Sem permissão</response>
         [HttpDelete("delete-product-promotion")]
-        public async Task<ActionResult<ServiceResponse<GetProductPromotionDTO>>>
+        public async Task<IActionResult>
             DeleteProductPromotion(DeleteProductPromotionDTO productPromotion)
         {
-            
-            try
-            {
-                _logger.LogInformation($"{DateTime.Now} | Removendo produto" +
+
+            //try
+            //{
+            //    _logger.LogInformation($"{DateTime.Now} | Removendo produto" +
+            //        $" '{productPromotion.ProductsId}' da promoção '{productPromotion.PromotionId}'");
+            //    return Ok(await _promotionService.DeleteProductPromotion(productPromotion));
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogInformation(ex, $"{DateTime.Now} | Erro ao remover produto" +
+            //        $" '{productPromotion.ProductsId}' da promoção '{productPromotion.PromotionId}'");
+            //    return BadRequest(ex.Message);
+            //}
+
+            _logger.LogInformation($"{DateTime.Now} | Removendo produto" +
                     $" '{productPromotion.ProductsId}' da promoção '{productPromotion.PromotionId}'");
-                return Ok(await _promotionService.DeleteProductPromotion(productPromotion));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogInformation(ex, $"{DateTime.Now} | Erro ao remover produto" +
-                    $" '{productPromotion.ProductsId}' da promoção '{productPromotion.PromotionId}'");
-                return BadRequest(ex.Message);
-            }
+            var result = await _promotionService.DeleteProductPromotion(productPromotion);
+            return OKOrBadRequest(result );
         }
     }
 }
