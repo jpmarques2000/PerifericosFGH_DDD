@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JoaoPaulo\\source\\repos\\Estudos\\Loja_PerifericosFGH\\API_DDD_Loja_PerifericosFGH\\Entities\\Entities.csproj": {}
+    "C:\\Users\\JoaoPaulo\\source\\repos\\Estudos\\Loja_PerifericosFGH\\PerifericosFGH_DDD\\Entities\\Entities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JoaoPaulo\\source\\repos\\Estudos\\Loja_PerifericosFGH\\API_DDD_Loja_PerifericosFGH\\Entities\\Entities.csproj": {
+    "C:\\Users\\JoaoPaulo\\source\\repos\\Estudos\\Loja_PerifericosFGH\\PerifericosFGH_DDD\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JoaoPaulo\\source\\repos\\Estudos\\Loja_PerifericosFGH\\API_DDD_Loja_PerifericosFGH\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\JoaoPaulo\\source\\repos\\Estudos\\Loja_PerifericosFGH\\PerifericosFGH_DDD\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "C:\\Users\\JoaoPaulo\\source\\repos\\Estudos\\Loja_PerifericosFGH\\API_DDD_Loja_PerifericosFGH\\Entities\\Entities.csproj",
+        "projectPath": "C:\\Users\\JoaoPaulo\\source\\repos\\Estudos\\Loja_PerifericosFGH\\PerifericosFGH_DDD\\Entities\\Entities.csproj",
         "packagesPath": "C:\\Users\\JoaoPaulo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JoaoPaulo\\source\\repos\\Estudos\\Loja_PerifericosFGH\\API_DDD_Loja_PerifericosFGH\\Entities\\obj\\",
+        "outputPath": "C:\\Users\\JoaoPaulo\\source\\repos\\Estudos\\Loja_PerifericosFGH\\PerifericosFGH_DDD\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
