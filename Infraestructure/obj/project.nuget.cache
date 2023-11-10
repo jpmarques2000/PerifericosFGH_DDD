@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gFDAe+Btqq6lYHG96GPqc8amlMTX8jTRNLQ/89wRLPFY3e4lNPdjuae8nt2MO3fhgafGBl3MpQgbxRAkLSz98g==",
+  "dgSpecHash": "fYnYoYTzb6hUZEQ9aAgE9g3G+l4BYr/2u/shw5tBZZesaGFuANMQWtvxe9xzta4nbavwQdw+NaLF6p2FDd3jVw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\JoaoPaulo\\source\\repos\\Estudos\\Loja_PerifericosFGH\\API_DDD_Loja_PerifericosFGH\\Infraestructure\\Infraestructure.csproj",
+  "projectFilePath": "C:\\Users\\JoaoPaulo\\source\\repos\\Estudos\\Loja_PerifericosFGH\\PerifericosFGH_DDD\\Infraestructure\\Infraestructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

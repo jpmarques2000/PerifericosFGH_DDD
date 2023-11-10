@@ -12,16 +12,18 @@ namespace WebAPIs.Controllers
 {
     [Route("api/[User]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : BaseController
     {
         private readonly IAuthRepository _authRepository;
         private readonly ILogger<UserController> _logger;
 
-        public UserController(IAuthRepository authRepository, ILogger<UserController> logger)
+        public UserController(IBaseNotification baseNotification,
+            IAuthRepository authRepository, ILogger<UserController> logger) : base(baseNotification)
         {
             _authRepository = authRepository;
             _logger = logger;
         }
+
 
         /// <summary>
         /// Realizar login
