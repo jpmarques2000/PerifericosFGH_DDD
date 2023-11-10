@@ -11,13 +11,13 @@ namespace WebAPIs.Controllers
     [Authorize]
     [Route("api/Products")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductController : BaseController
     {
         private readonly IProductService _productService;
         private readonly ILogger<ProductController> _logger;
 
-        public ProductController(IProductService productService,
-            ILogger<ProductController> logger)
+        public ProductController(IBaseNotification baseNotification,
+            IProductService productService, ILogger<ProductController> logger) : base(baseNotification)
         {
             _productService = productService;
             _logger = logger;
@@ -34,7 +34,10 @@ namespace WebAPIs.Controllers
         public async Task<IActionResult> Get()
         {
             _logger.LogInformation($"{DateTime.Now} | Carregando listagem de produtos");
-            return Ok(await _productService.Get());
+            //return Ok(await _productService.Get());
+
+            var result = await _productService.Get();
+            return OKOrBadRequest( result );
         }
 
         /// <summary>
@@ -48,16 +51,20 @@ namespace WebAPIs.Controllers
         [HttpGet("get-by-id")]
         public async Task<IActionResult> GetById(int productId)
         {
-            try
-            {
-                _logger.LogInformation($"{DateTime.Now} | Buscando produto id:'{productId}'");
-                return Ok(await _productService.GetById(productId));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"{DateTime.Now} | Erro ao buscar produto id: '{productId}'");
-                return BadRequest(ex.Message);
-            }
+            //try
+            //{
+            //    _logger.LogInformation($"{DateTime.Now} | Buscando produto id:'{productId}'");
+            //    return Ok(await _productService.GetById(productId));
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, $"{DateTime.Now} | Erro ao buscar produto id: '{productId}'");
+            //    return BadRequest(ex.Message);
+            //}
+
+            _logger.LogInformation($"{DateTime.Now} | Buscando produto id:'{productId}'");
+            var result = await _productService.GetById(productId);
+            return OKOrBadRequest( result );
         }
 
         /// <summary>
@@ -74,18 +81,22 @@ namespace WebAPIs.Controllers
         /// <response code="401">Não Autenticado</response>
         /// <response code="403">Não Autorizado | Sem permissão</response>
         [HttpPost]
-        public async Task<ActionResult<ICollection<GetProductDTO>>> AddProduct(AddProductDTO productDTO)
+        public async Task<IActionResult> AddProduct(AddProductDTO productDTO)
         {
-            try
-            {
-                _logger.LogInformation($"{DateTime.Now} | Adicionando produto:'{productDTO.Nome}'");
-                return Ok(await _productService.Add(productDTO));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"{DateTime.Now} | Erro ao adicionar produto: '{productDTO.Nome}'");
-                return BadRequest(ex.Message);
-            }
+            //try
+            //{
+            //    _logger.LogInformation($"{DateTime.Now} | Adicionando produto:'{productDTO.Nome}'");
+            //    return Ok(await _productService.Add(productDTO));
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, $"{DateTime.Now} | Erro ao adicionar produto: '{productDTO.Nome}'");
+            //    return BadRequest(ex.Message);
+            //}
+
+            _logger.LogInformation($"{DateTime.Now} | Adicionando produto:'{productDTO.Nome}'");
+            var result = await _productService.Add(productDTO);
+            return CreatedOrBadRequest( result );
         }
 
         /// <summary>
@@ -102,18 +113,22 @@ namespace WebAPIs.Controllers
         /// <response code="401">Não Autenticado</response>
         /// <response code="403">Não Autorizado | Sem permissão</response>
         [HttpPut]
-        public async Task<ActionResult<GetProductDTO>> UpdateProduct(UpdateProductDTO updatedProduct)
+        public async Task<IActionResult> UpdateProduct(UpdateProductDTO updatedProduct)
         {
-            try
-            {
-                _logger.LogInformation($"{DateTime.Now} | Alterando produto id:'{updatedProduct.Id}'");
-                return Ok(await _productService.Update(updatedProduct));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"{DateTime.Now} | Erro ao alterar produto: '{updatedProduct.Id}'");
-                return BadRequest(ex.Message);
-            }
+            //try
+            //{
+            //    _logger.LogInformation($"{DateTime.Now} | Alterando produto id:'{updatedProduct.Id}'");
+            //    return Ok(await _productService.Update(updatedProduct));
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, $"{DateTime.Now} | Erro ao alterar produto: '{updatedProduct.Id}'");
+            //    return BadRequest(ex.Message);
+            //}
+
+            _logger.LogInformation($"{DateTime.Now} | Alterando produto id:'{updatedProduct.Id}'");
+            var result = await _productService.Update(updatedProduct);
+            return OKOrBadRequest(result );
         }
 
         /// <summary>
@@ -130,7 +145,6 @@ namespace WebAPIs.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteProduct(int Id)
         {
-            
             try
             {
                 _logger.LogInformation($"{DateTime.Now} | Removendo produto id:'{Id}'");
