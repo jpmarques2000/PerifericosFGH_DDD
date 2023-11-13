@@ -20,6 +20,7 @@ namespace Domain.Services
             //Address Automappers
             CreateMap<Address, GetAddressDTO>();
             CreateMap<GetAddressDTO, Address>();
+            CreateMap<ServiceResponse<GetAddressDTO>, Address>();
             CreateMap<AddAddressDTO, Address>();
             CreateMap<UpdateAddressDTO, Address>();
             CreateMap<Address, UpdateAddressDTO>();

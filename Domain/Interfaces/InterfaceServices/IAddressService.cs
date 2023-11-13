@@ -16,6 +16,6 @@ namespace Domain.Interfaces.InterfaceServices
         Task<ServiceResponse<GetAddressDTO>> GetByCep(int cep);
         Task<ServiceResponse<ICollection<GetAddressDTO>>> Add(AddAddressDTO newAddress);
         Task<ServiceResponse<GetAddressDTO>> Update(UpdateAddressDTO updatedAddress);
-        Task<ServiceResponse<ICollection<GetAddressDTO>>> Delete(int cep);
+        Task<ServiceResponse<ICollection<GetAddressDTO>>> Delete(DeleteAddressDTO deletedAddress);
     }
 }
