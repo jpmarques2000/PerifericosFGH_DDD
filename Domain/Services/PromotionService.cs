@@ -1,4 +1,7 @@
-﻿using Domain.Interfaces;
+﻿using AutoMapper;
+using Domain.Contracts.Product;
+using Domain.Contracts.Promotion;
+using Domain.Interfaces;
 using Domain.Interfaces.InterfaceServices;
 using Domain.Services.DTO.PromotionDTO;
 using Entities.Entities;
@@ -13,21 +16,64 @@ namespace Domain.Services
     public class PromotionService : IPromotionService
     {
         private readonly IPromotionRepository _promotionRepository;
+        private readonly IProductRepository _productRepository;
+        private readonly IMapper _mapper;
+        private readonly IBaseNotification _baseNotification;
 
-        public PromotionService(IPromotionRepository promotionRepository)
+        public PromotionService(IPromotionRepository promotionRepository, IMapper mapper,
+            IBaseNotification baseNotification, IProductRepository productRepository)
         {
             _promotionRepository = promotionRepository;
+            _mapper = mapper;
+            _baseNotification = baseNotification;
+            _productRepository = productRepository;
         }
 
         public async Task<ServiceResponse<ICollection<GetProductPromotionDTO>>> 
             Add(CreateNewPromotionDTO newPromotion)
         {
+            var contract = new AddPromotionContract(newPromotion);
+
+            if(!contract.IsValid) 
+            {
+                _baseNotification.AddNotifications(contract.Notifications);
+                return default;
+            }
+
             return await _promotionRepository.CreateNewPromotion(newPromotion);
         }
 
         public async Task<ServiceResponse<GetProductPromotionDTO>> 
             AddProductPromotion(AddProductPromotionDTO productsPromotion)
         {
+            var contract = new AddProductPromotionContract(productsPromotion);
+
+            if (!contract.IsValid)
+            {
+                _baseNotification.AddNotifications(contract.Notifications);
+                return default;
+            }
+
+            var foundedPromotion = await _promotionRepository.GetById(productsPromotion.PromotionId);
+
+            var promotionContract = new FindPromotionContract(foundedPromotion);
+
+            if(!promotionContract.IsValid) 
+            {
+                _baseNotification.AddNotifications(promotionContract.Notifications);
+                return default;
+            }
+
+            var foundedProduct = await _productRepository.GetById(productsPromotion.ProductsId);
+
+            var productContract = new FindProductContract(foundedProduct);
+
+            if (!productContract.IsValid)
+            {
+                _baseNotification.AddNotifications(productContract.Notifications);
+                return default;
+            }
+
             return await _promotionRepository.AddProductPromotion(productsPromotion);
         }
 
@@ -41,6 +87,34 @@ namespace Domain.Services
         public async Task<ServiceResponse<GetProductPromotionDTO>> 
             DeleteProductPromotion(DeleteProductPromotionDTO deletedProduct)
         {
+            var contract = new DeleteProductPromotionContract(deletedProduct);
+
+            if (!contract.IsValid)
+            {
+                _baseNotification.AddNotifications(contract.Notifications);
+                return default;
+            }
+
+            var foundedPromotion = await _promotionRepository.GetById(deletedProduct.PromotionId);
+
+            var promotionContract = new FindPromotionContract(foundedPromotion);
+
+            if (!promotionContract.IsValid)
+            {
+                _baseNotification.AddNotifications(promotionContract.Notifications);
+                return default;
+            }
+
+            var foundedProduct = await _productRepository.GetById(deletedProduct.ProductsId);
+
+            var productContract = new FindProductContract(foundedProduct);
+
+            if (!productContract.IsValid)
+            {
+                _baseNotification.AddNotifications(productContract.Notifications);
+                return default;
+            }
+
             return await _promotionRepository.DeleteProductPromotion(deletedProduct);
         }
 
@@ -56,6 +130,14 @@ namespace Domain.Services
 
         public async Task<ServiceResponse<GetProductPromotionDTO>> Update(UpdatePromotionDTO updatedPromotion)
         {
+            var contract = new UpdatePromotionContract(updatedPromotion);
+
+            if (!contract.IsValid) 
+            {
+                _baseNotification.AddNotifications(contract.Notifications);
+                return default;
+            }
+
             return await _promotionRepository.UpdatePromotion(updatedPromotion);
         }
     }

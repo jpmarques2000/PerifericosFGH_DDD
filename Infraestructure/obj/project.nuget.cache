@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fYnYoYTzb6hUZEQ9aAgE9g3G+l4BYr/2u/shw5tBZZesaGFuANMQWtvxe9xzta4nbavwQdw+NaLF6p2FDd3jVw==",
+  "dgSpecHash": "HhGXopi6d7PIUOAZLhdeWobArYSP7sAKW/JOCtPM/jJzu49s3lZ/jgeepTXSwGXg8jpFkd4jt+jt2AxTDFpXuw==",
   "success": true,
   "projectFilePath": "C:\\Users\\JoaoPaulo\\source\\repos\\Estudos\\Loja_PerifericosFGH\\PerifericosFGH_DDD\\Infraestructure\\Infraestructure.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,8 @@
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\flunt\\2.0.5\\flunt.2.0.5.nupkg.sha512",
+    "C:\\Users\\JoaoPaulo\\.nuget\\packages\\flunt.br\\2.0.0\\flunt.br.2.0.0.nupkg.sha512",
+    "C:\\Users\\JoaoPaulo\\.nuget\\packages\\flunt.extensions.br\\1.0.1\\flunt.extensions.br.1.0.1.nupkg.sha512",
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.11\\microsoft.aspnetcore.authentication.jwtbearer.7.0.11.nupkg.sha512",
     "C:\\Users\\JoaoPaulo\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.11\\microsoft.aspnetcore.cryptography.internal.7.0.11.nupkg.sha512",

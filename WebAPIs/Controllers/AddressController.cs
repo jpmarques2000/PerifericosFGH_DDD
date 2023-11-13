@@ -155,7 +155,7 @@ namespace WebAPIs.Controllers
         /// <response code="401">Não Autenticado</response>
         /// <response code="403">Não Autorizado | Sem permissão</response>
         [HttpDelete]
-        public async Task<IActionResult> DeleteAddress(int cep)
+        public async Task<IActionResult> DeleteAddress(DeleteAddressDTO deletedAddress)
         {
             //try
             //{
@@ -169,8 +169,8 @@ namespace WebAPIs.Controllers
             //    return BadRequest(ex.Message);
             //}
 
-            _logger.LogInformation($"{DateTime.Now} | Removendo endereço cep: '{cep}'");
-            var result = await _addressService.Delete(cep);
+            _logger.LogInformation($"{DateTime.Now} | Removendo endereço cep: '{deletedAddress.Cep}'");
+            var result = await _addressService.Delete(deletedAddress);
 
             return OKOrBadRequest(result);
         }

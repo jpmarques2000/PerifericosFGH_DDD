@@ -143,18 +143,18 @@ namespace WebAPIs.Controllers
         /// <response code="401">Não Autenticado</response>
         /// <response code="403">Não Autorizado | Sem permissão</response>
         [HttpDelete]
-        public async Task<IActionResult> DeleteProduct(int Id)
+        public async Task<IActionResult> DeleteProduct(DeleteProductDTO deletedProduct)
         {
             try
             {
-                _logger.LogInformation($"{DateTime.Now} | Removendo produto id:'{Id}'");
-                await _productService.Delete(Id);
+                _logger.LogInformation($"{DateTime.Now} | Removendo produto id:'{deletedProduct.Id}'");
+                await _productService.Delete(deletedProduct);
                 return Ok("Produto removido com sucesso.");
             }
             catch (Exception ex)
             {
 
-                _logger.LogError(ex, $"{DateTime.Now} | Erro ao remover produto id: '{Id}'");
+                _logger.LogError(ex, $"{DateTime.Now} | Erro ao remover produto id: '{deletedProduct.Id}'");
                 return BadRequest(ex.Message);
             }
         }
