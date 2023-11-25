@@ -30,6 +30,11 @@ namespace Entities.Entities
         [Column(TypeName = "varchar(80)")]
         public string? Complemento { get; set; }
 
+        public Address()
+        {
+            
+        }
+
         public Address(int cep, string? rua, string? bairro, int numero, string? complemento)
         {
             Cep = cep;

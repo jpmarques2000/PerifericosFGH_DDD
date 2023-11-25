@@ -14,7 +14,7 @@ namespace Domain.Interfaces.InterfaceServices
     {
         Task<ServiceResponse<ICollection<GetProductDTO>>> Add(AddProductDTO newProduct);
         Task<ServiceResponse<GetProductDTO>> Update(UpdateProductDTO updatedProduct);
-        Task Delete(int Id);
+        Task Delete(DeleteProductDTO deletedProduct);
         Task<object> Get();
         Task<object> GetById(int productId);
     }

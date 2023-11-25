@@ -58,6 +58,14 @@
             "Flunt": {
               "target": "Package",
               "version": "[2.0.5, )"
+            },
+            "Flunt.Br": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "Flunt.Extensions.Br": {
+              "target": "Package",
+              "version": "[1.0.1, )"
             }
           },
           "imports": [
