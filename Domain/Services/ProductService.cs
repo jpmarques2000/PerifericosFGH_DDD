@@ -40,7 +40,9 @@ namespace Domain.Services
                 return default;
             }
 
-            return await _productRepository.AddNewProduct(newProduct);
+            var product = _mapper.Map<Product>(newProduct);
+
+            return await _productRepository.AddNewProduct(product);
         }
 
         public async Task<ServiceResponse<GetProductDTO>> Update(UpdateProductDTO updatedProduct)
@@ -65,14 +67,16 @@ namespace Domain.Services
                 return default;
             }
 
-            return await _productRepository.UpdateProduct(updatedProduct);
+            var product = _mapper.Map<Product>(updatedProduct);
+
+            return await _productRepository.UpdateProduct(product);
         }
 
         public async Task
             Delete(DeleteProductDTO deletedProduct)
         {
-            var product = await _productRepository.GetById(deletedProduct.Id);
-            await _productRepository.Delete(product);
+            //var product = await _productRepository.GetById(deletedProduct.Id);
+            await _productRepository.Delete(deletedProduct.Id);
 
         }
 

@@ -34,10 +34,16 @@ namespace Infraestructure.Repository.Generics
 
         }
 
-        public async Task Delete(T entity)
+        public async Task<T> Delete(int id)
         {
-            _dbset.Remove(entity);
+            var data = await GetById(id);
+            if (data == null) 
+            {
+                return null;
+            }
+            var removedData = _dbset.Remove(data);
             await _context.SaveChangesAsync();
+            return removedData.Entity;
         }
 
         public async Task<T> GetById(int Id)
