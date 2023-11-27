@@ -10,6 +10,7 @@ using Infraestructure.Repository.Generics;
 using Infraestructure.Repository.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
@@ -41,7 +42,10 @@ builder.Services.AddSwaggerGen( c =>
     c.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 
-builder.Services.AddDbContext<ApplicationDbContext>(ServiceLifetime.Scoped);
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString") 
+    ?? throw new InvalidOperationException("Connection string 'ConnectionString' not found.")));
+//builder.Services.AddDbContext<ApplicationDbContext>(ServiceLifetime.Scoped);
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 // Interface and Repository
 //builder.Services.AddScoped(typeof(IGeneric<>), typeof(GenericsRepository<>));

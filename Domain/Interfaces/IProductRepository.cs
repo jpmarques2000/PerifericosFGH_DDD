@@ -11,7 +11,7 @@ namespace Domain.Interfaces
 {
     public interface IProductRepository : IGeneric<Product>
     {
-        Task<ServiceResponse<ICollection<GetProductDTO>>> AddNewProduct(AddProductDTO newProduct);
-        Task<ServiceResponse<GetProductDTO>> UpdateProduct(UpdateProductDTO updatedProduct);
+        Task<ServiceResponse<ICollection<GetProductDTO>>> AddNewProduct(Product product);
+        Task<ServiceResponse<GetProductDTO>> UpdateProduct(Product updatedProduct);
     }
 }

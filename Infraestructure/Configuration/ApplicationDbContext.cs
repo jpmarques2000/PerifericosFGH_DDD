@@ -8,11 +8,11 @@ namespace Infraestructure.Configuration
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        private readonly IConfiguration _configuration;
+        //private readonly IConfiguration _configuration;
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            _configuration = configuration;
+            //_configuration = configuration;
         }
 
         public DbSet<Product> Product { get; set; }
@@ -23,8 +23,8 @@ namespace Infraestructure.Configuration
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(
-                _configuration.GetValue<string>("ConnectionStrings:ConnectionString"));
+            //optionsBuilder.UseSqlServer(
+            //    _configuration.GetValue<string>("ConnectionStrings:ConnectionString"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
