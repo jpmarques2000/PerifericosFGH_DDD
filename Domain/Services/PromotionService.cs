@@ -79,9 +79,9 @@ namespace Domain.Services
 
         public async Task Delete(int Id)
         {
-            var promotion = await _promotionRepository.GetById(Id);
+            //var promotion = await _promotionRepository.GetById(Id);
 
-            await _promotionRepository.Delete(promotion);
+            await _promotionRepository.Delete(Id);
         }
 
         public async Task<ServiceResponse<GetProductPromotionDTO>> 

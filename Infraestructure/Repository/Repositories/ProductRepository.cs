@@ -22,10 +22,10 @@ namespace Infraestructure.Repository.Repositories
             _mapper = mapper;
         }
 
-        public async Task<ServiceResponse<ICollection<GetProductDTO>>> AddNewProduct(AddProductDTO newProduct)
+        public async Task<ServiceResponse<ICollection<GetProductDTO>>> AddNewProduct(Product product)
         {
             var serviceResponse = new ServiceResponse<ICollection<GetProductDTO>>();
-            var product = _mapper.Map<Product>(newProduct);
+            //var product = _mapper.Map<Product>(newProduct);
 
             try
             {
@@ -48,14 +48,13 @@ namespace Infraestructure.Repository.Repositories
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<GetProductDTO>> UpdateProduct(UpdateProductDTO updatedProduct)
+        public async Task<ServiceResponse<GetProductDTO>> UpdateProduct(Product updatedProduct)
         {
             var serviceResponse = new ServiceResponse<GetProductDTO>();
 
             try
             {
-                var product = await _context.Product.FirstOrDefaultAsync(p => p.Id == updatedProduct.Id) ?? 
-                    throw new Exception($"Produto {updatedProduct.Nome} não encontrado.");
+                var product = await _context.Product.FirstOrDefaultAsync(p => p.Id == updatedProduct.Id);
 
                 product.Nome = updatedProduct.Nome;
                 product.Descricao = updatedProduct.Descricao;
