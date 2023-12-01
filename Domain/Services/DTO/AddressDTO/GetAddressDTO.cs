@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Services.DTO.ProductDTO;
 
 namespace Infraestructure.DTO.AddressDTO
 {
@@ -15,5 +16,16 @@ namespace Infraestructure.DTO.AddressDTO
         public string? Bairro { get; set; }
         public int Numero { get; set; }
         public string? Complemento { get; set; }
+
+        public object Clone()
+        {
+            var address = (GetAddressDTO)MemberwiseClone();
+            return address;
+        }
+
+        public GetAddressDTO TypedClone()
+        {
+            return (GetAddressDTO)Clone();
+        }
     }
 }

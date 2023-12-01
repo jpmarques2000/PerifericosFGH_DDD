@@ -47,7 +47,9 @@ namespace Domain.Services
                 return default;
             }
 
-            return await _addressRepository.AddAddress(newAddress);
+            var address = _mapper.Map<Address>(newAddress);
+
+            return await _addressRepository.AddAddress(address);
         }
 
         public async Task<ServiceResponse<ICollection<GetAddressDTO>>> Delete(DeleteAddressDTO deletedAddress)
@@ -118,7 +120,9 @@ namespace Domain.Services
                 return default;
             }
 
-            return await _addressRepository.UpdateAddress(updatedAddress);
+            var address = _mapper.Map<Address>(updatedAddress);
+
+            return await _addressRepository.UpdateAddress(address);
         }
 
         //public async Task<bool> VerifyCepExists(int cep)
