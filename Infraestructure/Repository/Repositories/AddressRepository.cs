@@ -25,10 +25,10 @@ namespace Infraestructure.Repository.Repositories
             _mapper = mapper;
         }
 
-        public async Task<ServiceResponse<ICollection<GetAddressDTO>>> AddAddress(AddAddressDTO newAddress)
+        public async Task<ServiceResponse<ICollection<GetAddressDTO>>> AddAddress(Address address)
         {
             var serviceResponse = new ServiceResponse<ICollection<GetAddressDTO>>();
-            var address = _mapper.Map<Address>(newAddress);
+            //var address = _mapper.Map<Address>(newAddress);
 
             try
             {
@@ -51,7 +51,7 @@ namespace Infraestructure.Repository.Repositories
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<GetAddressDTO>> UpdateAddress(UpdateAddressDTO updatedAddress)
+        public async Task<ServiceResponse<GetAddressDTO>> UpdateAddress(Address updatedAddress)
         {
             var serviceResponse = new ServiceResponse<GetAddressDTO>();
             //var validationAddress = _mapper.Map<Address>(updatedAddress);
