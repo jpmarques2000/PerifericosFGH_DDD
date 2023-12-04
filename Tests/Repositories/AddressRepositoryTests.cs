@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Interfaces;
 using Entities.Entities;
-using FakeData.ProductData;
+using FakeData.AddressDT;
 using FluentAssertions;
 using Infraestructure.Configuration;
 using Infraestructure.Repository.Repositories;
