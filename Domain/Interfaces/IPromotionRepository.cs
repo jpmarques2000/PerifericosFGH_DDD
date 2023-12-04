@@ -13,11 +13,11 @@ namespace Domain.Interfaces
     {
         //Create new promotion
         Task<ServiceResponse<ICollection<GetProductPromotionDTO>>>
-            CreateNewPromotion(CreateNewPromotionDTO newPromotion);
+            CreateNewPromotion(Promotion newPromotion);
 
         //Update promotion
         Task<ServiceResponse<GetProductPromotionDTO>> 
-            UpdatePromotion(UpdatePromotionDTO updatedPromotion);
+            UpdatePromotion(Promotion updatedPromotion);
 
         //Adds a new product to a promotion
         Task<ServiceResponse<GetProductPromotionDTO>> 

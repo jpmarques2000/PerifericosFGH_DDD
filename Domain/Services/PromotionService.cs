@@ -8,6 +8,7 @@ using Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,7 +41,9 @@ namespace Domain.Services
                 return default;
             }
 
-            return await _promotionRepository.CreateNewPromotion(newPromotion);
+            var promotion = _mapper.Map<Promotion>(newPromotion);
+
+            return await _promotionRepository.CreateNewPromotion(promotion);
         }
 
         public async Task<ServiceResponse<GetProductPromotionDTO>> 
@@ -138,7 +141,9 @@ namespace Domain.Services
                 return default;
             }
 
-            return await _promotionRepository.UpdatePromotion(updatedPromotion);
+            var promotion = _mapper.Map<Promotion>(updatedPromotion);
+
+            return await _promotionRepository.UpdatePromotion(promotion);
         }
     }
 }

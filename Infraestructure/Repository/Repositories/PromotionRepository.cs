@@ -22,7 +22,7 @@ namespace Infraestructure.Repository.Repositories
         }
 
         public async Task<ServiceResponse<ICollection<GetProductPromotionDTO>>>
-            CreateNewPromotion(CreateNewPromotionDTO newPromotion)
+            CreateNewPromotion(Promotion newPromotion)
         {
             var serviceResponse = new ServiceResponse<ICollection<GetProductPromotionDTO>>();
             var promotion = _mapper.Map<Promotion>(newPromotion);
@@ -49,7 +49,7 @@ namespace Infraestructure.Repository.Repositories
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<GetProductPromotionDTO>> UpdatePromotion(UpdatePromotionDTO updatedPromotion)
+        public async Task<ServiceResponse<GetProductPromotionDTO>> UpdatePromotion(Promotion updatedPromotion)
         {
             var serviceResponse = new ServiceResponse<GetProductPromotionDTO>();
 

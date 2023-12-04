@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FakeData.ProductData
+namespace FakeData.AddressDT
 {
     public class AddressFaker : Faker<Address>
     {
